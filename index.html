@@ -1,13 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<!--
-
-#f75cd7
-#d44298
-rgb(172,10,178)
-rgb(198,46,233)
-
--->
 <head>
   <meta charset="utf-8">
   <title>random colors</title>
@@ -26,7 +18,14 @@ rgb(198,46,233)
   #rgb div::before {
     counter-increment: rgb;
     content: counter(rgb) ". ";
-    /* font-weight: bold; */
+    color: #000;
+  }
+  #hsl {
+    counter-reset: hsl;
+  }
+  #hsl div::before {
+    counter-increment: hsl;
+    content: counter(hsl) ". ";
     color: #000;
   }
   </style>
@@ -35,6 +34,7 @@ rgb(198,46,233)
   <main>
     <div id="hex"></div>
     <div id="rgb" style="margin-top:30px;"></div>
+    <div id="hsl" style="margin-top:30px;"></div>
   </main>
   <script>
   function getRandomInt(min, max) {
@@ -51,6 +51,7 @@ rgb(198,46,233)
   let num = prompt('how many random colors would you like?');
   let hex = document.getElementById('hex');
   let rgb = document.getElementById('rgb');
+  let hsl = document.getElementById('hsl');
   for (let i = 0; i < num;i ++) {
     let d = document.createElement('div');
     let c = '#' + randomHex() + randomHex() + randomHex() + randomHex() + randomHex() + randomHex();
@@ -62,6 +63,11 @@ rgb(198,46,233)
     r.style.color = c;
     r.innerHTML = c;
     rgb.appendChild(r);
+    let h = document.createElement('div');
+    c = 'hsl(' + getRandomInt(0,360) + ',' + getRandomInt(0,100) + '%,' + getRandomInt(0,100) +'%)';
+    h.style.color = c;
+    h.innerHTML = c;
+    hsl.appendChild(h);
   }
   </script>
 </body>
