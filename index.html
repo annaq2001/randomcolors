@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<!--
+
+#f75cd7
+#d44298
+rgb(172,10,178)
+rgb(198,46,233)
+
+-->
+<head>
+  <meta charset="utf-8">
+  <title>random colors</title>
+  <style>
+  #hex {
+    counter-reset: hex;
+  }
+  #hex div::before {
+    counter-increment: hex;
+    content: counter(hex) ". ";
+    color: #000;
+  }
+  #rgb {
+    counter-reset: rgb;
+  }
+  #rgb div::before {
+    counter-increment: rgb;
+    content: counter(rgb) ". ";
+    /* font-weight: bold; */
+    color: #000;
+  }
+  </style>
+</head>
+<body>
+  <main>
+    <div id="hex"></div>
+    <div id="rgb" style="margin-top:30px;"></div>
+  </main>
+  <script>
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+  }
+  function randomHex() {
+    return getRandomInt(0,15).toString(16);
+  }
+  function randomRGB() {
+    return getRandomInt(0,255);
+  }
+  let num = prompt('how many random colors would you like?');
+  let hex = document.getElementById('hex');
+  let rgb = document.getElementById('rgb');
+  for (let i = 0; i < num;i ++) {
+    let d = document.createElement('div');
+    let c = '#' + randomHex() + randomHex() + randomHex() + randomHex() + randomHex() + randomHex();
+    d.style.color = c;
+    d.innerHTML = c;
+    hex.appendChild(d);
+    let r = document.createElement('div');
+    c = 'rgb(' + randomRGB() + ',' + randomRGB() + ',' + randomRGB() +')';
+    r.style.color = c;
+    r.innerHTML = c;
+    rgb.appendChild(r);
+  }
+  </script>
+</body>
+</html>
